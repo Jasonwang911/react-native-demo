@@ -2,9 +2,12 @@ import React, { Component } from 'react';
 import {
     View,
     Text,
+    Image,
+    TouchableOpacity,
     StyleSheet
 } from 'react-native';
 import Girl from './Gril';
+import NavigationBar from './NavigationBar'
 
 export default class Boy extends Component {
     constructor(props) {
@@ -14,9 +17,31 @@ export default class Boy extends Component {
         }
     }
 
+    renderButtom(image) {
+        return <TouchableOpacity
+                    onPress={ () => {
+                        this.props.navigator.pop();
+                    }}
+                >
+                    <Image style={{widht: 22, height: 22, margin: 5}} source={image}></Image>
+                </TouchableOpacity>
+    }
+
     render() {
         return (
             <View style={styles.container}>
+                <NavigationBar 
+                title="Boy页面"
+                leftButton={
+                    this.renderButtom(require('./res/images/sao.png'))
+                }
+                rightButton={
+                    this.renderButtom(require('./res/images/home.png'))
+                }
+                statusBar={{
+                    backgroundColor: '#ee6363'
+                }}
+                ></NavigationBar>
                 <Text style={styles.text}>I am boy</Text>
                 <Text style={styles.text}
                     onPress={ () => {
@@ -43,7 +68,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: 'aqua',
-        justifyContent: 'center'
+        // justifyContent: 'center'
     },
     text: {
         fontSize: 20
