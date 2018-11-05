@@ -8,7 +8,9 @@
 
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Image, View, Text} from 'react-native';
-import TabNavigator from 'react-native-tab-navigator';
+import { Navigator} from 'react-native-deprecated-custom-components'
+// import TabNavigator from 'react-native-tab-navigator';
+import Boy from './Boy';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -28,7 +30,17 @@ export default class App extends Component<Props> {
   render() {
     return (
       <View style={styles.container}>
-      
+        <Navigator
+          initialRoute={
+            {
+              component: Boy
+            }
+          }
+          renderScene={(route, navigator) => {
+            let Component = route.component;
+            return <Component navigator={navigator} {...route.params} />
+          }}
+        ></Navigator>
           {/* <TabNavigator>
           <TabNavigator.Item
               selected={this.state.selectedTab === 'home'}
@@ -79,19 +91,19 @@ const styles = StyleSheet.create({
     backgroundColor: '#F5FCFF',
   },
   page1: {
-      flex: 1,
-      backgroundColor: 'red',
+    flex: 1,
+    backgroundColor: 'red',
   },
-    page2: {
-      flex: 1,
-        backgroundColor: 'blue',
+  page2: {
+    flex: 1,
+    backgroundColor: 'blue',
   },
-    page3: {
-        flex: 1,
-        backgroundColor: 'yellow',
-    },
-    page4: {
-        flex: 1,
-        backgroundColor: 'pink',
-    },
+  page3: {
+    flex: 1,
+    backgroundColor: 'yellow',
+  },
+  page4: {
+    flex: 1,
+    backgroundColor: 'pink',
+  },
 });
