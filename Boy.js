@@ -24,7 +24,7 @@ export default class Boy extends Component {
                             component: Girl,
                             params: {
                                 word: 'Boy 刷礼物了',
-                                onCallBack: () => {
+                                onCallBack: (word) => {
                                     this.setState({
                                         word: word
                                     })
